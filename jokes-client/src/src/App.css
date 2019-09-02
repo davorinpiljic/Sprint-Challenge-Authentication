@@ -1,0 +1,90 @@
+.App {
+  color: black;
+  font-family: "Roboto";
+}
+img {
+  max-width: 100%;
+  max-height: 100%;
+}
+.Home {
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  height: 100%;
+  margin: auto;
+  background-color: whitesmoke;
+  text-align: center;
+}
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 40vmin;
+  pointer-events: none;
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: orange;
+}
+
+.register {
+  width: 390px !important;
+  border: 1px solid black;
+  border-radius: 3px;
+  padding: 9px;
+  margin: 33px;
+  background-color: whitesmoke;
+  box-shadow: 1px 1px 3px 1px slategray;
+  text-align: center;
+}
+.usercard {
+  width: 390px !important;
+  border: 1px solid black;
+  border-radius: 3px;
+  padding: 9px;
+  margin: 33px;
+  background-color: whitesmoke;
+  box-shadow: 1px 1px 3px 1px slategray;
+  text-align: center;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.link {
+  color: black;
+}
+
+.home-logo {
+  width: 100%;
+}
+
+.usercard-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  max-width: 100%;
+}
+
+.icon {
+  width: 80px;
+}
+
+.navbar {
+  background-color: slategray;
+}

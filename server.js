@@ -1,12 +1,29 @@
-const Users = require("./auth-model.js");
+const express = require("express");
+const cors = require("cors");
+const helmet = require("helmet");
+const bodyParser = require("body-parser");
 const router = require("express").Router();
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const secrets = require("../database/secrets.js");
+const secrets = require("./database/secrets.js");
+const authenticate = require("./auth/authenticate-middleware.js");
+const authRouter = require("./auth/auth-router.js");
+const jokesRouter = require("./jokes/jokes-router.js");
+const request = require("supertest");
+const server = express();
 
-router.post("/register", async (req, res) => {
+server.use(bodyParser.json());
+server.use(bodyParser.urlencoded({ extended: false }));
+server.use(helmet());
+server.use(cors());
+server.use(express.json());
+
+// server.use("/api/auth", authRouter);
+// server.use("/api/jokes", authenticate, jokesRouter);
+
+server.post("/api/auth/register", async (req, res) => {
   console.log("getting to /register endpoint");
-  console.log(req);
+  console.log(req.body);
   const newUser = req.body;
   const hash = bcrypt.hashSync(newUser.password, 10);
   newUser.password = hash;
@@ -22,7 +39,7 @@ router.post("/register", async (req, res) => {
   }
 });
 
-router.post("/login", async (req, res) => {
+server.post("/login", async (req, res) => {
   const { username, password } = req.body;
   try {
     const user = await Users.findBy({ username }).first();
@@ -48,4 +65,8 @@ function generateToken(user) {
   return jwt.sign(payload, secrets.jwtSecret, options);
 }
 
-module.exports = router;
+const PORT = process.env.PORT || 1111;
+server.listen(PORT, () => {
+  console.log(`\n=== Server listening on port ${PORT} ===\n`);
+});
+module.exports = server;
